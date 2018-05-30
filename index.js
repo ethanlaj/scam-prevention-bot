@@ -118,7 +118,7 @@ bot.on("message", async message => {
 	//2 = Helper
 	//3 = Developers
 	if (message.content.startsWith(prefix)) {
-		let commandfile = bot.commands.get(cmd.slice(prefix.length)).toLowerCase();
+		let commandfile = bot.commands.get(cmd.slice(prefix.length));
 		if (!commandfile) return;
 		if(bot.data.timeout.find(value => value.id === message.author.id)) return message.reply("You cannot use this command yet!").catch(() => {
 			return message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function () { });
@@ -129,7 +129,7 @@ bot.on("message", async message => {
 		bot.data.timeout.push({ id: message.author.id });
 		return commandfile.run(bot, message, args, prefix, permissionLevel);
 	} else if (message.content.startsWith(`<@!${bot.user.id}>`) || message.content.startsWith(`<@${bot.user.id}>`)) {
-		let commandfile = bot.commands.get(args[0]).toLowerCase();
+		let commandfile = bot.commands.get(args[0].toLowerCase());
 		if (!commandfile) return;
 		if (message.content.startsWith(`<@${bot.user.id}>`)) {
 			message.content = message.content.replace(`<@${bot.user.id}> `, `${prefix}`);
