@@ -19,7 +19,6 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		});
 	} else {
 		var rawExpires = args[1];
-		console.log(rawExpires);
 		if(rawExpires === "0") rawExpires = 0;
 		if(!args[1]) return message.reply("Please include an expiration date or 0!").catch(() => {
 			return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
