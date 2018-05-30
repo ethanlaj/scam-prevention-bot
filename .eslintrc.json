@@ -1,0 +1,68 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"extends": "eslint:recommended",
+	"parser": "babel-eslint",
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"plugins": [
+		"json",
+		"promise"
+	],
+	"rules": {
+		"max-len": [
+			"error",
+			{
+				"code": 1000
+			}
+		],
+		"line-comment-position": [
+			"error",
+			"above"
+		],
+		"indent": [
+			"error",
+			"tab"
+		],
+		"no-trailing-spaces": [
+			"error"
+		],
+		"comma-spacing": "error",
+		"linebreak-style": [
+			"error",
+			"windows"
+		],
+		"quotes": [
+			"error",
+			"double"
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"promise/always-return": "off",
+		"promise/no-return-wrap": "error",
+		"promise/param-names": "error",
+		"promise/catch-or-return": "error",
+		"promise/no-native": "off",
+		"promise/no-nesting": "off",
+		"promise/no-promise-in-callback": "warn",
+		"promise/no-callback-in-promise": "warn",
+		"promise/avoid-new": "off",
+		"promise/no-new-statics": "error",
+		"promise/no-return-in-finally": "warn",
+		"promise/valid-params": "warn",
+		"no-console": [
+			"off",
+			{
+				"allow": [
+					"warn",
+					"error"
+				]
+			}
+		]
+	}
+}
