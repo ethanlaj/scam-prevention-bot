@@ -128,10 +128,14 @@ bot.on("message", async message => {
 		}, 2000);
 		bot.data.timeout.push({ id: message.author.id });
 		return commandfile.run(bot, message, args, prefix, permissionLevel);
-	} else if (message.content.startsWith(`<@${bot.user.id}>`)) {
+	} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
 		let commandfile = bot.commands.get(args[0]);
 		if (!commandfile) return;
-		message.content = message.content.replace(`<@${bot.user.id}> `, `${prefix}`);
+		if (message.content.startsWith(`<@${bot.user.id}>`)) {
+			message.content = message.content.replace(`<@${bot.user.id}> `, `${prefix}`);
+		} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
+			message.content = message.content.replace(`<@!${bot.user.id}> `, `${prefix}`);
+		}
 		messageArray = message.content.split(" ");
 		args = messageArray.slice(1);
 		if(bot.data.timeout.find(value => value.id === message.author.id)) return message.reply("You cannot use this command yet!").catch(() => {
