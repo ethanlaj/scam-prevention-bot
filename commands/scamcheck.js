@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
 	});
 	if (errortf == true) return;
 	let checker = bot.data.scammers.find(value => value.id === user);
-	console.log(checker.id);
+	console.log(bot.data.scammers);
 	console.log(user);
 	if (checker) return message.reply(`This person is in our scammers database!\n**Link to their profile:** https://www.roblox.com/users/${user}/profile`).catch(() => {
 		return message.author.send(`You attempted to use the \`scamcheck\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
