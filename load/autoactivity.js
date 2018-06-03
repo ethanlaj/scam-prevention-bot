@@ -24,8 +24,9 @@ var activities = [
 ];
 
 /*variables:
-{users} = user count
+{users} = total users count
 {servers} = server count
+{channels} = total channels count
 */
 
 //activities correspond w/ messages
@@ -37,8 +38,8 @@ module.exports.run = async (bot) => {
 		var message = messages[loopNumber];
 		message = message.replace("{users}", bot.users.size);
 		message = message.replace("{servers}", bot.guilds.size);
+		message = message.replace("{channels}", bot.channels.size);
 		bot.user.setActivity(message, { type: activities[loopNumber] }).catch(function () { });
-		console.log(messages[loopNumber]);
 		loopNumber++;
 	}, 30000);
 };
