@@ -4,7 +4,7 @@ const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true, fetchAllMembers: true});
 bot.loaders = { enabledLoaders: [], disabledLoaders: [] };
 bot.data = { prefixes: [], inPrompt: [], blacklistedUsers: [], blacklistedGuilds: [], scammers: [], codes: [], pusers: [], timeout: []};
-bot.counter = false;
+bot.auto = false;
 bot.commands = new Discord.Collection();
 
 fs.readdirSync(__dirname + "/load").forEach(file => {
@@ -53,7 +53,6 @@ bot.on("ready", async () => {
 			loader.run(bot);
 	});
 	console.log(`${bot.user.username} is online!`);
-	await bot.user.setActivity("for !help", { type: "WATCHING" }).catch(function () { });
 });
 
 bot.on("message", async message => {
