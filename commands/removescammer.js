@@ -16,9 +16,9 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 			});
 			if (errortf == true) return;
 
-			if (bot.data.scammers.find(value => value.id === user)) {
-				bot.data.scammers.find(value => value.id === user).msg.delete();
-				bot.data.scammers.splice(bot.data.scammers.indexOf(bot.data.scammers.find(value => value.id === user)), 1);
+			if (bot.data.scammers.find(value => value.id === user.toString())) {
+				bot.data.scammers.find(value => value.id === user.toString()).msg.delete();
+				bot.data.scammers.splice(bot.data.scammers.indexOf(bot.data.scammers.find(value => value.id === user.toString())), 1);
 				var inchannel = msgs.find(m => RegExp(user, "gi").test(m.content));
 				if(inchannel) inchannel.delete();
 				message.react("\u2705");

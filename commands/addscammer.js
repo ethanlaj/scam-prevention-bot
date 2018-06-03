@@ -14,9 +14,9 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 				});
 			});
 			if (errortf === true) return;
-			if (!bot.data.scammers.find(value => value.id === user)) {
+			if (!bot.data.scammers.find(value => value.id === user.toString())) {
 				scammerschannel.send(`${user}`).then((newmessage) => {
-					bot.data.scammers.push({ msg: newmessage, id: user });
+					bot.data.scammers.push({ msg: newmessage, id: user.toString() });
 				}).catch(function () { });
 				post.send(`**${userid}**, https://www.roblox.com/users/${user}/profile`).catch(function () { });
 				message.react("\u2705").catch(function () { });
