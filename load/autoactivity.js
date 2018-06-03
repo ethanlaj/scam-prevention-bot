@@ -13,7 +13,7 @@ module.exports.run = async (bot) => {
 	var loopNumber = 0;
 	bot.setInterval(function() {
 		if(!bot.auto) return;
-		if (loopNumber === messages.length - 1) loopNumber = 0;
+		if (loopNumber === messages.length) loopNumber = 0;
 		bot.user.setActivity(messages[loopNumber], { type: activities[loopNumber] }).catch(function () { });
 		console.log(messages[loopNumber]);
 		loopNumber++;
