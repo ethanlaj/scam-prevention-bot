@@ -1,12 +1,12 @@
 var messages = [
-	"Message 1",
-	"Message 2",
-	"Message 3",
+	"for !report",
+	"Watching for !updates",
+	"for !updates"
 ];
 var activities = [
 	"WATCHING",
 	"PLAYING",
-	"LISTENING",
+	"WATCHING",
 ];
 //activities correspond w/ messages
 module.exports.run = async (bot) => {
@@ -17,5 +17,5 @@ module.exports.run = async (bot) => {
 		bot.user.setActivity(messages[loopNumber], { type: activities[loopNumber] }).catch(function () { });
 		console.log(messages[loopNumber]);
 		loopNumber++;
-	}, 2000);
+	}, 30000);
 };
