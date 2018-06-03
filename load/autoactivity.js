@@ -40,5 +40,5 @@ module.exports.run = async (bot) => {
 		bot.user.setActivity(message, { type: activities[loopNumber] }).catch(function () { });
 		console.log(messages[loopNumber]);
 		loopNumber++;
-	}, 2000);
+	}, 30000);
 };
