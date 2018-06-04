@@ -3,7 +3,7 @@ var messages = [
 	"for !help",
 	"on {servers} servers",
 	"for !updates",
-	"premium for only $3/3 months",
+	"premium for as low as $3/3 months",
 	"for !buypremium",
 	"for scammers",
 	"for !report",
