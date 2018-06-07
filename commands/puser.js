@@ -1,6 +1,6 @@
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel !== 3) return;
-	var mentioneduser = message.mentions.users.first().user;
+	var mentioneduser = message.mentions.users.first();
 	if (!mentioneduser) {
 		var id = args[0];
 		if (!id) return message.reply("Please mention a user or supply a user id!").catch(() => {
