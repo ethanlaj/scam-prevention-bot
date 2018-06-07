@@ -1,9 +1,16 @@
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel !== 3) return;
-	let mentioneduser = message.mentions.users.first();
-	if (!mentioneduser) return message.reply("Please mention a user!").catch(() => {
-		return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
-	});
+	var mentioneduser = message.mentions.users.first().user;
+	if (!mentioneduser) {
+		var id = args[0];
+		if (!id) return message.reply("Please mention a user or supply a user id!").catch(() => {
+			return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
+		});
+		mentioneduser = await bot.fetchUser(id);
+		if (!mentioneduser) return message.reply("Please mention a user or supply a valid user id!").catch(() => {
+			return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
+		});
+	}
 	let userschannel = bot.channels.find("id", "444588564056113162");
 	let usercheck = bot.data.pusers.find(value => value.id === mentioneduser.id);
 	if (usercheck) {
@@ -19,13 +26,13 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		});
 	} else {
 		var rawExpires = args[1];
-		if(rawExpires === "0") rawExpires = 0;
-		if(!args[1]) return message.reply("Please include an expiration date or 0!").catch(() => {
+		if (rawExpires === "0") rawExpires = 0;
+		if (!args[1]) return message.reply("Please include an expiration date or 0!").catch(() => {
 			return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 		});
 		var addValue = Number(rawExpires) * 2678400000;
 		var expires = Date.now() + addValue;
-		if(rawExpires === 0) expires = 0;
+		if (rawExpires === 0) expires = 0;
 		await userschannel.send(`${mentioneduser.id} ${expires.toString()}`).then((newmsg) => {
 			bot.data.pusers.push({ msg: newmsg, id: mentioneduser.id, expires: expires.toString() });
 			message.reply("Successfully given this user premium!").catch(() => {
