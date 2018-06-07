@@ -6,9 +6,10 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		if (!id) return message.reply("Please mention a user or supply a user id!").catch(() => {
 			return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 		});
-		mentioneduser = await bot.fetchUser(id);
-		if (!mentioneduser) return message.reply("Please mention a user or supply a valid user id!").catch(() => {
-			return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
+		mentioneduser = await bot.fetchUser(id).catch(() => {
+			return message.reply("Please mention a user or supply a valid user id!").catch(() => {
+				return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
+			});
 		});
 	}
 	let userschannel = bot.channels.find("id", "444588564056113162");
