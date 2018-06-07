@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const DBL = require("dblapi.js");
 const request = require("request-promise-native");
 function postServerCount(bot) {
 	return request.post({
