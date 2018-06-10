@@ -95,11 +95,12 @@ bot.on("message", async message => {
 					bot.data.timeout.push({ id: message.author.id });
 					commandFile.run(bot, message, args, prefix, permissionLevel);
 				} else {
-					message.reply("You cannot use this command yet!").catch(() => {
+					message.reply("You cannot use this command yet!").then((sentMessage) => {
+						sentMessage.delete(3500);
+					}).catch(() => {
 						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
 				}
-
 			}
 		} else if (message.content.startsWith(`<@!${bot.user.id}> `) || message.content.startsWith(`<@${bot.user.id}> `)) {
 			commandFile = bot.commands.get(args[0].toLowerCase());
@@ -117,7 +118,9 @@ bot.on("message", async message => {
 					bot.data.timeout.push({ id: message.author.id });
 					commandFile.run(bot, message, args, prefix, permissionLevel);
 				} else {
-					message.reply("You cannot use this command yet!").catch(() => {
+					message.reply("You cannot use this command yet!").then((sentMessage) => {
+						sentMessage.delete(3500);
+					}).catch(() => {
 						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
 				}
