@@ -1,3 +1,4 @@
+const botconfig = require("./botconfig.js");
 module.exports.run = async (bot) => {
 	bot.on("message", (message) => {
 		var rawPrefix = bot.data.prefixes.find(value => value.guild === message.guild.id);
