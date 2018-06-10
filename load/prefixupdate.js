@@ -1,5 +1,7 @@
 module.exports.run = async (bot) => {
 	bot.on("message", (message) => {
+		var rawPrefix = bot.data.prefixes.find(value => value.guild === message.guild.id);
+		var prefix = (rawPrefix != null) ? rawPrefix.prefix : bot.defaultPrefix;
 		if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix"))) {
 			if (bot.data.timeout.find(value => value.id === message.author.id)) return message.reply("You cannot use this command yet!").catch(() => {
 				return message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
