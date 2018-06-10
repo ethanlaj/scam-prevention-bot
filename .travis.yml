@@ -4,8 +4,8 @@ node_js:
 deploy:
   provider: heroku
   api_key:
-    secure: process.env.apikey
+    secure: ilY70g2VgiEHMCpP0pRYhv2Uhm5Tbu8NcPUnJKHclit1GkhH1Ex2l4e1Dk6zRp80DJu6K4ZxEaTJROqm25wlSXroQEna70DBXjrgOB00Hd0WjLgjTqSwcW4XUiUHoj7b1Hd0JrDrGnh1Y1h8KYLF65okLx6m/ODXSWlH5I6lZoCoi9EzjOMtWHeqzqtSQQsd8/Dz5QokrWbvkVeiEHu6xNOSkstmGBVeTRnMcPK4jrY9BWABwyZLkUyKgBgB5nxzpUdN4EYhHMGjDI4GgQSu4Ysai4h2EcwbvD7Oo5cj9R+td7ehn/M4S1vf/GH13V/zhlcitlJQ/yu/kyQYa69A5kUVmLXGRR72+2nh4IXyKTpPyXuVufz6KHIWEJ89R7/YCVOlPLTfOs4gbyx/46XEv5T6XG+1tAVN+a+SI/NUgqokiT/notZeH2JGXLJLjZWCwUqyriGv0TZ/p8sgImqych2m2Rmop5OJ0BcEGVJsYL0GwUJK3PIVGXw2E2vlaFXumboJ7oTGSUK+ozFQZkqUx/EHiA0+DDqSFbGtVKOcIADTPFoGIMktYa08f0HnG8KQ7ckmTJ0OTXj/lkDNJK/22RgPfyol4+SMHvdLvKg7JcSsjFZMdU7DTgvssBYTK6iyw05Db3WE5XXfFYXfYL0dd9UazP9J8F8mZiCXWCAmi78=
   app: rblx-dev-requests-bot
 cache:
   directories:
-    - node_modules
+  - node_modules
