@@ -101,9 +101,10 @@ bot.on("message", async message => {
 				}
 
 			}
-		} else if (message.content.startsWith(`<@!${bot.user.id}>`) || message.content.startsWith(`<@${bot.user.id}>`)) {
+		} else if (message.content.startsWith(`<@!${bot.user.id}> `) || message.content.startsWith(`<@${bot.user.id}> `)) {
 			commandFile = bot.commands.get(args[0].toLowerCase());
 			if (commandFile != null) {
+				args.shift();
 				if (message.content.startsWith(`<@${bot.user.id}>`)) {
 					message.content = message.content.replace(`<@${bot.user.id}> `, prefix);
 				} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
