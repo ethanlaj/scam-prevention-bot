@@ -7,6 +7,7 @@ bot.data = { prefixes: [], inPrompt: [], blacklistedUsers: [], blacklistedGuilds
 bot.auto = false;
 bot.commands = new Discord.Collection();
 bot.disabledCommands = [];
+bot.defaultPrefix = botconfig.prefix;
 
 fs.readdirSync(__dirname + "/load").forEach(file => {
 	try {
@@ -61,7 +62,7 @@ bot.on("message", async message => {
 		var args = message.content.split(" "),
 			cmd = args.shift().toLowerCase();
 		var rawPrefix = bot.data.prefixes.find(value => value.guild === message.guild.id);
-		var prefix = (rawPrefix != null) ? rawPrefix.prefix : botconfig.prefix;
+		var prefix = (rawPrefix != null) ? rawPrefix.prefix : bot.defaultPrefix;
 
 		if (bot.data.pusers.find(value => value.id === message.author.id) && bot.data.pusers.find(value => value.id === message.author.id).expires !== "0" && bot.data.pusers.find(value => value.id === message.author.id).expires < Date.now()) {
 			bot.data.pusers.find(value => value.id === message.author.id).msg.delete();
