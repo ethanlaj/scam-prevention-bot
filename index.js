@@ -96,7 +96,7 @@ bot.on("message", async message => {
 					commandFile.run(bot, message, args, prefix, permissionLevel);
 				} else {
 					message.reply("You cannot use this command yet!").then((sentMessage) => {
-						sentMessage.delete(3500);
+						sentMessage.delete(3500).catch(function() {});
 					}).catch(() => {
 						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
@@ -119,7 +119,7 @@ bot.on("message", async message => {
 					commandFile.run(bot, message, args, prefix, permissionLevel);
 				} else {
 					message.reply("You cannot use this command yet!").then((sentMessage) => {
-						sentMessage.delete(3500);
+						sentMessage.delete(3500).catch(function() {});
 					}).catch(() => {
 						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
 					});
