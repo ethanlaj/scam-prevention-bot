@@ -54,7 +54,9 @@ bot.on("ready", () => {
 		if (loader.run != null)
 			loader.run(bot);
 	});
-	console.log(`${bot.user.username} is online!`);
+	console.log(`${bot.user.tag} is online. ` +
+		`${bot.commands.size}/${bot.commands.size + bot.disabledCommands.length}` +
+		"commands loaded successfully.");
 });
 
 bot.on("message", async message => {
@@ -67,7 +69,7 @@ bot.on("message", async message => {
 		if (bot.data.pusers.find(value => value.id === message.author.id) && bot.data.pusers.find(value => value.id === message.author.id).expires !== "0" && bot.data.pusers.find(value => value.id === message.author.id).expires < Date.now()) {
 			bot.data.pusers.find(value => value.id === message.author.id).msg.delete();
 			bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find(value => value.id === message.author.id)), 1);
-			message.author.send("Your premium has expired!").catch(function() {});
+			message.author.send("Your premium has expired!").catch(function () { });
 		}
 		let guild = bot.guilds.find("id", "443867131721941005");
 		var permissionLevel = 0;
@@ -96,9 +98,9 @@ bot.on("message", async message => {
 					commandFile.run(bot, message, args, prefix, permissionLevel);
 				} else {
 					message.reply("You cannot use this command yet!").then((sentMessage) => {
-						sentMessage.delete(3500).catch(function() {});
+						sentMessage.delete(3500).catch(function () { });
 					}).catch(() => {
-						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
+						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function () { });
 					});
 				}
 			}
@@ -119,9 +121,9 @@ bot.on("message", async message => {
 					commandFile.run(bot, message, args, prefix, permissionLevel);
 				} else {
 					message.reply("You cannot use this command yet!").then((sentMessage) => {
-						sentMessage.delete(3500).catch(function() {});
+						sentMessage.delete(3500).catch(function () { });
 					}).catch(() => {
-						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
+						message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function () { });
 					});
 				}
 
