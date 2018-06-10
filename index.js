@@ -6,6 +6,7 @@ bot.loaders = { enabledLoaders: [], disabledLoaders: [] };
 bot.data = { prefixes: [], inPrompt: [], blacklistedUsers: [], blacklistedGuilds: [], scammers: [], codes: [], pusers: [], timeout: []};
 bot.auto = false;
 bot.commands = new Discord.Collection();
+bot.disabledCommands = [];
 
 fs.readdirSync(__dirname + "/load").forEach(file => {
 	try {
@@ -47,7 +48,7 @@ fs.readdir("./commands/", (err, files) => {
 		}
 	});
 });
-bot.on("ready", async () => {
+bot.on("ready", () => {
 	bot.loaders.enabledLoaders.forEach(loader => {
 		if (loader.run != null)
 			loader.run(bot);
@@ -56,47 +57,16 @@ bot.on("ready", async () => {
 });
 
 bot.on("message", async message => {
-	if (message.author.bot) return;
-	if (message.channel.type === "dm") return;
+	if (!message.author.bot && message.channel.type !== "dm") {
+		var args = message.content.split(" "),
+		    cmd = args.shift().toLowerCase();
+	}
 	var messageArray = message.content.split(" ");
 	var cmd = messageArray[0].toLowerCase();
 	var args = messageArray.slice(1);
 	var rawPrefix = bot.data.prefixes.find(value => value.guild === message.guild.id);
-	var prefix;
-	if (!rawPrefix) prefix = botconfig.prefix;
-	if (rawPrefix) prefix = rawPrefix.prefix;
-	if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix"))) {
-		if(bot.data.timeout.find(value => value.id === message.author.id)) return message.reply("You cannot use this command yet!").catch(() => {
-			return message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function () { });
-		});
-		bot.data.timeout.push({ id: message.author.id });
-		bot.setTimeout(function() {
-			bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find(value => value.id === message.author.id)), 1);
-		}, 2000);
-		return message.reply(`My prefix is \`${prefix}\``).catch(() => {
-			return message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function () { });
-		});
-	}
-	if ((message.isMemberMentioned(bot.user)) && (message.content.endsWith("prefix reset")) && (message.member.hasPermission("MANAGE_GUILD"))) {
-		if(bot.data.timeout.find(value => value.id === message.author.id)) return message.reply("You cannot use this command yet!").catch(() => {
-			return message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function () { });
-		});
-		if (prefix !== botconfig.prefix) {
-			bot.data.prefixes.splice(bot.data.prefixes.indexOf(bot.data.prefixes.find(value => value.guild === message.guild.id)), 1);
-			if (rawPrefix) rawPrefix.msg.delete();
-			bot.data.timeout.push({ id: message.author.id });
-			bot.setTimeout(function() {
-				bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find(value => value.id === message.author.id)), 1);
-			}, 2000);
-			return message.react("\u2705").catch(function () { });
-		} else {
-			bot.data.timeout.push({ id: message.author.id });
-			bot.setTimeout(function() {
-				bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find(value => value.id === message.author.id)), 1);
-			}, 2000);
-			return message.react("\u2705").catch(function () { });
-		}
-	}
+	var prefix = (rawPrefix != null) ? rawPrefix.prefix : botconfig.prefix;
+	
 	if (bot.data.pusers.find(value => value.id === message.author.id) && bot.data.pusers.find(value => value.id === message.author.id).expires !== "0" && bot.data.pusers.find(value => value.id === message.author.id).expires < Date.now()) {
 		bot.data.pusers.find(value => value.id === message.author.id).msg.delete();
 		bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find(value => value.id === message.author.id)), 1);
