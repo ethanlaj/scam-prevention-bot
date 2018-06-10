@@ -56,7 +56,7 @@ bot.on("ready", () => {
 	});
 	console.log(`${bot.user.tag} is online. ` +
 		`${bot.commands.size}/${bot.commands.size + bot.disabledCommands.length}` +
-		"commands loaded successfully.");
+		" commands loaded successfully.");
 });
 
 bot.on("message", async message => {
