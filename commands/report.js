@@ -88,7 +88,7 @@ module.exports.run = async (bot, message) => {
 			if (m.content.toLowerCase() === "cancel") {
 				bot.data.inPrompt.splice(bot.data.inPrompt.indexOf(bot.data.inPrompt.find(m => m.id === message.author.id)), 1);
 
-				return await message.author.send(cancelembed).catch(function () { });
+				return message.author.send(cancelembed).catch(function () { });
 			}
 		});
 		collector.on("end", async function (collected) {
