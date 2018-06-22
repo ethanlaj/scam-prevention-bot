@@ -3,6 +3,9 @@
 		"es6": true,
 		"node": true
 	},
+	"globals": {
+		"Enum": false
+	},
 	"extends": "eslint:recommended",
 	"parser": "babel-eslint",
 	"parserOptions": {
@@ -10,13 +13,13 @@
 	},
 	"plugins": [
 		"json",
-		"promise"
+		"promise",
+		"no-for-each"
 	],
 	"rules": {
 		"max-len": [
-			"error",
-			{
-				"code": 1000
+			"error", {
+				"code": 200
 			}
 		],
 		"line-comment-position": [
@@ -30,11 +33,10 @@
 		"no-trailing-spaces": [
 			"error"
 		],
+		"space-before-blocks": "error",
+		"keyword-spacing": "error",
+		"arrow-spacing": "error",
 		"comma-spacing": "error",
-		"linebreak-style": [
-			"error",
-			"windows"
-		],
 		"quotes": [
 			"error",
 			"double"
@@ -43,26 +45,15 @@
 			"error",
 			"always"
 		],
-		"promise/always-return": "off",
+		"arrow-parens": ["error", "always"],
+		"no-for-each/no-for-each": "error",
+		"no-for-each/no-for-in": "error",
 		"promise/no-return-wrap": "error",
 		"promise/param-names": "error",
-		"promise/catch-or-return": "error",
-		"promise/no-native": "off",
-		"promise/no-nesting": "off",
-		"promise/no-promise-in-callback": "warn",
-		"promise/no-callback-in-promise": "warn",
-		"promise/avoid-new": "off",
+		"promise/catch-or-return": "off",
+		"promise/no-promise-in-callback": "error",
+		"promise/no-callback-in-promise": "error",
 		"promise/no-new-statics": "error",
-		"promise/no-return-in-finally": "warn",
-		"promise/valid-params": "warn",
-		"no-console": [
-			"off",
-			{
-				"allow": [
-					"warn",
-					"error"
-				]
-			}
-		]
+		"promise/no-return-in-finally": "error"
 	}
 }
