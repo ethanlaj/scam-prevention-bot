@@ -5,7 +5,7 @@ module.exports.run = async (bot) => {
 	upvotesholdingchannel.fetchMessages({ limit: 100 }).then(async (msgs) => {
 		for (let i = 0, len = msgs.length; i < len; i++) {
 
-			const msg = msgs[i]
+			const msg = msgs[i];
 
 			upvoter = await bot.fetchUser(msg.content);
 			upvotessend.send(`Many thanks to ${upvoter.tag} for upvoting our bot!`).then(() => {
