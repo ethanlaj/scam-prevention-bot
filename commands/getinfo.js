@@ -41,7 +41,7 @@ async function everything(args, message, bot) {
 			dbchannel.fetchMessages({ limit: 100 }).then(async (messages) => {
 				for (let i = 0, len = messages.length; i < len; i++) {
 
-					const msg = messages[i]
+					const msg = messages[i];
 
 					if (msg.content.startsWith(`${target.id}`)) {
 						count = count - 1;

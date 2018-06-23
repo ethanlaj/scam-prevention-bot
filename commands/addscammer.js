@@ -13,7 +13,6 @@ module.exports = {
 				post = bot.channels.get("443959210817093642"),
 				userID = args[0];
 			if (userID != null) {
-				var errortf = false;
 				var user = await rbx.getIdFromUsername(args[0]);
 				if (user != null) {
 					if (bot.data.scammers.find((value) => value.id === user.toString()) != null) {

@@ -44,13 +44,13 @@ module.exports = {
 					}
 				} else {
 					message.reply("Please provide a correct case number!").catch(() => {
-					       message.author.send(`You attempted to use the \`accept\` command in ${message.channel}, but I can not chat there.`).catch(() => {});
+						message.author.send(`You attempted to use the \`accept\` command in ${message.channel}, but I can not chat there.`).catch(() => {});
 					});
 				}
 			} else {
 				message.reply("Please provide a case number!").catch(() => {
-				       message.author.send(`You attempted to use the \`accept\` command in ${message.channel}, but I can not chat there.`).catch(() => {});
-			       });
+					message.author.send(`You attempted to use the \`accept\` command in ${message.channel}, but I can not chat there.`).catch(() => {});
+				});
 			}
 		}
 	}

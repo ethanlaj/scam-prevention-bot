@@ -19,7 +19,7 @@
 	"rules": {
 		"max-len": [
 			"error", {
-				"code": 200
+				"code": 500
 			}
 		],
 		"line-comment-position": [
@@ -54,6 +54,7 @@
 		"promise/no-promise-in-callback": "error",
 		"promise/no-callback-in-promise": "error",
 		"promise/no-new-statics": "error",
-		"promise/no-return-in-finally": "error"
+		"promise/no-return-in-finally": "error",
+		"no-console": "off"
 	}
 }
