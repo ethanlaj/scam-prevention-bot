@@ -2,10 +2,10 @@ module.exports.run = async (bot) => {
 	let upvotesholdingchannel = bot.channels.find("id", "448615839533498388");
 	let upvotessend = bot.channels.find("id", "448951130081460245");
 	var upvoter;
-	upvotesholdingchannel.fetchMessages({ limit: 100 }).then((msgs) => {
-		for (let i= 0, len = msgs.length; i < len; i++) {
+	upvotesholdingchannel.fetchMessages({ limit: 100 }).then(async (msgs) => {
+		for (let i = 0, len = msgs.length; i < len; i++) {
 
-const msg = msgs[i]
+			const msg = msgs[i]
 
 			upvoter = await bot.fetchUser(msg.content);
 			upvotessend.send(`Many thanks to ${upvoter.tag} for upvoting our bot!`).then(() => {

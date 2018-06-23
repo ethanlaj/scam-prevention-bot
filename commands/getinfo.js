@@ -33,15 +33,15 @@ async function everything(args, message, bot) {
 	var count = 0;
 	var count2 = 0;
 	message.channel.send("Loading...").then((m) => {
-		for (let i= 0, len = dbchannels.length; i < len; i++) {
+		for (let i = 0, len = dbchannels.length; i < len; i++) {
 
 			const dbchannel = dbchannels[i];
 
 			count2 = count2 + 1;
-			dbchannel.fetchMessages({ limit: 100 }).then((messages) => {
-				for (let i= 0, len = messages.length; i < len; i++) {
+			dbchannel.fetchMessages({ limit: 100 }).then(async (messages) => {
+				for (let i = 0, len = messages.length; i < len; i++) {
 
-const msg = messages[i]
+					const msg = messages[i]
 
 					if (msg.content.startsWith(`${target.id}`)) {
 						count = count - 1;
@@ -72,12 +72,12 @@ const msg = messages[i]
 				}
 			}).catch(() => {
 				return message.reply("Couldn't fetch data from the database. Please try again.").catch(() => {
-					return message.author.send(`You attempted to use the \`getinfo\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
+					return message.author.send(`You attempted to use the \`getinfo\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 				});
 			});
 		}
 	}).catch(() => {
-		return message.author.send(`You attempted to use the \`getinfo\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
+		return message.author.send(`You attempted to use the \`getinfo\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 	});
 }
 

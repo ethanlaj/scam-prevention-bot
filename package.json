@@ -25,6 +25,7 @@
 		"roblox-js": "^4.0.2"
 	},
 	"devDependencies": {
-		"eslint-plugin-json": "^1.2.0"
+		"eslint-plugin-json": "^1.2.0",
+		"eslint-plugin-no-for-each": "^0.1.14"
 	}
 }
