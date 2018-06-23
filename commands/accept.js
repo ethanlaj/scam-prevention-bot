@@ -20,7 +20,7 @@ module.exports = {
 						const acceptEmbed = new RichEmbed()
 							.setColor("#0000FF")
 							.setDescription(":white_check_mark: **Scam Report Accepted -- After reviewing your report, our moderators and admins have decided this is a valid scam report. This user will be added to our database shortly.** :white_check_mark:");
-						message.author.send({ embed: acceptEmbed }).then(() => {
+						user.send({ embed: acceptEmbed }).then(() => {
 							message.react("✅").catch(() => {});
 						}).catch(() => {
 							message.reply("Couldn't DM this user!").catch(() => {
