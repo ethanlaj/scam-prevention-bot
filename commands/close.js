@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
-	if(permissionLevel > 0) {
+	if (permissionLevel > 0) {
 		let pchannel = bot.channels.find("id", "444633860769185832");
 		await pchannel.setTopic("closed").then(() => {
 			message.react("✅").catch(function () { });

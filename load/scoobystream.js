@@ -1,5 +1,5 @@
 module.exports.run = async (bot) => {
-	bot.fetchUser("291367352476631040").then(user => {
+	bot.fetchUser("291367352476631040").then((user) => {
 		if (!user.presence.game) return bot.auto = true;
 		if (!user.presence.game.streaming) return bot.auto = true;
 		bot.auto = false;

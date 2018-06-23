@@ -29,14 +29,20 @@ async function everything(args, message, bot) {
 	}
 	if (!target) return message.channel.send("Please **mention** a valid user.");
 	var dbguild = bot.guilds.get("443929284411654144");
-	var dbchannels = dbguild.channels.filter(m => RegExp("roblox-database", "gi").test(m.name));
+	var dbchannels = dbguild.channels.filter((m) => RegExp("roblox-database", "gi").test(m.name));
 	var count = 0;
 	var count2 = 0;
-	message.channel.send("Loading...").then(m => {
-		dbchannels.forEach(dbchannel => {
+	message.channel.send("Loading...").then((m) => {
+		for (let i= 0, len = dbchannels.length; i < len; i++) {
+
+			const dbchannel = dbchannels[i];
+
 			count2 = count2 + 1;
-			dbchannel.fetchMessages({ limit: 100 }).then(messages => {
-				messages.forEach(async msg => {
+			dbchannel.fetchMessages({ limit: 100 }).then((messages) => {
+				for (let i= 0, len = messages.length; i < len; i++) {
+
+const msg = messages[i]
+
 					if (msg.content.startsWith(`${target.id}`)) {
 						count = count - 1;
 						var msgargs = msg.content.split(" ").slice(1);
@@ -63,13 +69,13 @@ async function everything(args, message, bot) {
 					}
 					count = count + 1;
 					if (count == messages.size && count2 == dbchannels.size) return m.edit(`${target.user.tag} is not verified, please tell them to run \`!verify\``);
-				});
+				}
 			}).catch(() => {
 				return message.reply("Couldn't fetch data from the database. Please try again.").catch(() => {
 					return message.author.send(`You attempted to use the \`getinfo\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 				});
 			});
-		});
+		}
 	}).catch(() => {
 		return message.author.send(`You attempted to use the \`getinfo\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 	});

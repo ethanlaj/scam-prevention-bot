@@ -9,7 +9,11 @@ bot.commands = new Discord.Collection();
 bot.disabledCommands = [];
 bot.defaultPrefix = botconfig.prefix;
 
-fs.readdirSync(__dirname + "/load").forEach(file => {
+let canada = fs.readdirSync(__dirname + "/load");
+for (let i= 0, len = canada.length; i < len; i++) {
+
+	const file = canada[i];
+
 	try {
 		let loader = require("./load/" + file);
 		bot.loaders.enabledLoaders.push(loader);
@@ -18,7 +22,7 @@ fs.readdirSync(__dirname + "/load").forEach(file => {
 		console.log(`\nThe ${file} load module failed to load:`);
 		console.log(err);
 	}
-});
+}
 
 function checkCommand(command, name) {
 	var resultOfCheck = [true, null];
@@ -32,9 +36,12 @@ var jsfiles;
 
 fs.readdir("./commands/", (err, files) => {
 	if (err) console.log(err);
-	jsfiles = files.filter(f => f.endsWith(".js"));
+	jsfiles = files.filter((f) => f.endsWith(".js"));
 	if (jsfiles.length <= 0) return console.log("Couldn't find commands.");
-	jsfiles.forEach((f) => {
+	for (let i= 0, len = jsfiles.length; i < len; i++) {
+
+		const f = jsfiles[i];
+
 		try {
 			var props = require(`./commands/${f}`);
 			if (checkCommand(props, f)[0]) {
@@ -47,28 +54,32 @@ fs.readdir("./commands/", (err, files) => {
 			console.log(`\nThe ${f} command failed to load:`);
 			console.log(err);
 		}
-	});
+	}
 });
 bot.on("ready", () => {
-	bot.loaders.enabledLoaders.forEach(loader => {
+	let canada = bot.loaders.enabledLoaders;
+	for (let i= 0, len = canada.length; i < len; i++) {
+
+		const loader = canada[i];
+
 		if (loader.run != null)
 			loader.run(bot);
-	});
+	}
 	console.log(`${bot.user.tag} is online. ` +
 		`${bot.commands.size}/${bot.commands.size + bot.disabledCommands.length}` +
 		" commands loaded successfully.");
 });
 
-bot.on("message", async message => {
+bot.on("message", async (message) => {
 	if (!message.author.bot && message.channel.type !== "dm") {
 		var args = message.content.split(" "),
 			cmd = args.shift().toLowerCase();
-		var rawPrefix = bot.data.prefixes.find(value => value.guild === message.guild.id);
+		var rawPrefix = bot.data.prefixes.find((value) => value.guild === message.guild.id);
 		var prefix = (rawPrefix != null) ? rawPrefix.prefix : bot.defaultPrefix;
 
-		if (bot.data.pusers.find(value => value.id === message.author.id) && bot.data.pusers.find(value => value.id === message.author.id).expires !== "0" && bot.data.pusers.find(value => value.id === message.author.id).expires < Date.now()) {
-			bot.data.pusers.find(value => value.id === message.author.id).msg.delete();
-			bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find(value => value.id === message.author.id)), 1);
+		if (bot.data.pusers.find((value) => value.id === message.author.id) && bot.data.pusers.find((value) => value.id === message.author.id).expires !== "0" && bot.data.pusers.find((value) => value.id === message.author.id).expires < Date.now()) {
+			bot.data.pusers.find((value) => value.id === message.author.id).msg.delete();
+			bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find((value) => value.id === message.author.id)), 1);
 			message.author.send("Your premium has expired!").catch(function () { });
 		}
 		let guild = bot.guilds.find("id", "443867131721941005");
@@ -89,7 +100,7 @@ bot.on("message", async message => {
 		if (message.content.startsWith(prefix)) {
 			commandFile = bot.commands.get(cmd.slice(prefix.length));
 			if (commandFile != null) {
-				var timeout = bot.data.timeout.find(value => value.id === message.author.id);
+				var timeout = bot.data.timeout.find((value) => value.id === message.author.id);
 				if (timeout == null) {
 					bot.setTimeout(() => {
 						bot.data.timeout.splice(bot.data.timeout.indexOf(timeout), 1);
@@ -113,9 +124,9 @@ bot.on("message", async message => {
 				} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
 					message.content = message.content.replace(`<@!${bot.user.id}> `, prefix);
 				}
-				if (bot.data.timeout.find(value => value.id === message.author.id) == null) {
+				if (bot.data.timeout.find((value) => value.id === message.author.id) == null) {
 					bot.setTimeout(() => {
-						bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find(value => value.id === message.author.id)), 1);
+						bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find((value) => value.id === message.author.id)), 1);
 					}, 2000);
 					bot.data.timeout.push({ id: message.author.id });
 					commandFile.run(bot, message, args, prefix, permissionLevel);

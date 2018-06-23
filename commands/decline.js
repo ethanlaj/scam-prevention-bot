@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
-	if(permissionLevel > 0) {
+	if (permissionLevel > 0) {
 		let casenumber = args[0];
 		if (!casenumber) return message.reply("Please provide a case number!").catch(() => {
 			return message.author.send(`You attempted to use the \`decline\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		let reportschannel = bot.channels.find("id", "444633860769185832");
 		var delmessage;
 		await reportschannel.fetchMessages({ limit: 100 }).then((reports) => {
-			delmessage = reports.find(m => m.embeds && m.embeds[0] && m.embeds[0].fields && m.embeds[0].fields[0].value === casenumber);
+			delmessage = reports.find((m) => m.embeds && m.embeds[0] && m.embeds[0].fields && m.embeds[0].fields[0].value === casenumber);
 		});
 		if (!delmessage) return message.reply("Please provide a correct case number!").catch(() => {
 			return message.author.send(`You attempted to use the \`decline\` command in ${message.channel}, but I can not chat there.`).catch(function () { });

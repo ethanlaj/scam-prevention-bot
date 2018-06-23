@@ -33,7 +33,7 @@ var activities = [
 module.exports.run = async (bot) => {
 	var loopNumber = 0;
 	bot.setInterval(function() {
-		if(!bot.auto) return;
+		if (!bot.auto) return;
 		if (loopNumber === messages.length) loopNumber = 0;
 		var message = messages[loopNumber];
 		message = message.replace("{users}", bot.users.size);

@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		if (!guildid) return message.reply("You must supply a guild id!").catch(() => {
 			return message.author.send(`You attempted to use the \`guildblacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 		});
-		if (!bot.data.blacklistedGuilds.find(value => value.id === guildid)) {
+		if (!bot.data.blacklistedGuilds.find((value) => value.id === guildid)) {
 			channel.send(`${guildid}`).then((newMessage) => {
 				message.react("\u2705").catch(function () { });
 				bot.data.blacklistedGuilds.push({ msg: newMessage, id: guildid });

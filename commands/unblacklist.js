@@ -11,13 +11,13 @@ module.exports.run = async (bot, message, args) => {
 		var pingeduser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 		var userid = args[0];
 		if (pingeduser) {
-			if (bot.data.blacklistedUsers.find(value => value.id === pingeduser.id)) {
+			if (bot.data.blacklistedUsers.find((value) => value.id === pingeduser.id)) {
 				var pingeduserob = await bot.fetchUser(pingeduser.id);
 				if (!pingeduserob) message.reply("Couldn't find this user!").catch(() => {
 					return message.author.send(`You attempted to use the \`unblacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 				});
-				bot.data.blacklistedUsers.find(value => value.id === pingeduser.id).msg.delete().then(() => {
-					bot.data.blacklistedUsers.splice(bot.data.blacklistedUsers.indexOf(bot.data.blacklistedUsers.find(value => value.id === pingeduser.id)), 1);
+				bot.data.blacklistedUsers.find((value) => value.id === pingeduser.id).msg.delete().then(() => {
+					bot.data.blacklistedUsers.splice(bot.data.blacklistedUsers.indexOf(bot.data.blacklistedUsers.find((value) => value.id === pingeduser.id)), 1);
 					message.react("\u2705").catch(function () { });
 				}).catch(() => {
 					return message.reply("Couldn't unblacklist this user because I couldn't access the database.").catch(() => {
@@ -36,13 +36,13 @@ module.exports.run = async (bot, message, args) => {
 				return message.author.send(`You attempted to use the \`unblacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 			});
 		} else {
-			if (bot.data.blacklistedUsers.find(value => value.id === userid)) {
+			if (bot.data.blacklistedUsers.find((value) => value.id === userid)) {
 				var userob = await bot.fetchUser(userid);
 				if (!userob) return message.reply("Couldn't find this user!").catch(() => {
 					return message.author.send(`You attempted to use the \`unblacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 				});
-				bot.data.blacklistedUsers.find(value => value.id === userid).msg.delete().then(() => {
-					bot.data.blacklistedUsers.splice(bot.data.blacklistedUsers.indexOf(bot.data.blacklistedUsers.find(value => value.id === pingeduser.id)), 1);
+				bot.data.blacklistedUsers.find((value) => value.id === userid).msg.delete().then(() => {
+					bot.data.blacklistedUsers.splice(bot.data.blacklistedUsers.indexOf(bot.data.blacklistedUsers.find((value) => value.id === pingeduser.id)), 1);
 					message.react("\u2705").catch(function () { });
 				}).catch(() => {
 					return message.reply("Couldn't unblacklist this user because I couldn't access the database.").catch(() => {

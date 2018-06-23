@@ -13,10 +13,10 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		});
 	}
 	let userschannel = bot.channels.find("id", "444588564056113162");
-	let usercheck = bot.data.pusers.find(value => value.id === mentioneduser.id);
+	let usercheck = bot.data.pusers.find((value) => value.id === mentioneduser.id);
 	if (usercheck) {
 		await usercheck.msg.delete().then(() => {
-			bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find(value => value.id === mentioneduser.id)), 1);
+			bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find((value) => value.id === mentioneduser.id)), 1);
 			return message.reply("Removed this user's premium.").catch(() => {
 				return message.author.send(`You attempted to use the \`puser\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 			});

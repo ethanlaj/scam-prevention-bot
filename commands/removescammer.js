@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const rbx = require("roblox-js");
 
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
-	if(permissionLevel > 0) {
+	if (permissionLevel > 0) {
 		let userid = args[0];
 		let post = bot.channels.find("id", "443959210817093642");
 		let msgs = await post.fetchMessages({ limit: 100 });
@@ -16,11 +16,11 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 			});
 			if (errortf == true) return;
 
-			if (bot.data.scammers.find(value => value.id === user.toString())) {
-				bot.data.scammers.find(value => value.id === user.toString()).msg.delete();
-				bot.data.scammers.splice(bot.data.scammers.indexOf(bot.data.scammers.find(value => value.id === user.toString())), 1);
-				var inchannel = msgs.find(m => RegExp(user, "gi").test(m.content));
-				if(inchannel) inchannel.delete();
+			if (bot.data.scammers.find((value) => value.id === user.toString())) {
+				bot.data.scammers.find((value) => value.id === user.toString()).msg.delete();
+				bot.data.scammers.splice(bot.data.scammers.indexOf(bot.data.scammers.find((value) => value.id === user.toString())), 1);
+				var inchannel = msgs.find((m) => RegExp(user, "gi").test(m.content));
+				if (inchannel) inchannel.delete();
 				message.react("\u2705");
 				let mod = bot.channels.find("id", "444634075836448768");
 				let log = new Discord.RichEmbed()

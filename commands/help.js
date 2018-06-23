@@ -5,13 +5,16 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		.setColor("#0000FF");
 	const TYPES = ["Public", "Premium", "Support", "Developer"],
 		MAP = (command) => `\`${prefix}${command.help.name}\` - ${command.help.description}`;
-	TYPES.forEach(type => {
+	for (let i= 0, len = TYPES.length; i < len; i++) {
+
+		const type = TYPES[i];
+
 		if (type !== "Support" && type !== "Developer") {
-			commandsEmbed.addField(type, bot.commands.filter(command => command.help.type === type).map(MAP));
+			commandsEmbed.addField(type, bot.commands.filter((command) => command.help.type === type).map(MAP));
 		} else if ((permissionLevel >= 2 && type === "Support") || (permissionLevel === 3 && type === "Developer")) {
-			commandsEmbed.addField(type, bot.commands.filter(command => command.help.type === type).map(MAP));
+			commandsEmbed.addField(type, bot.commands.filter((command) => command.help.type === type).map(MAP));
 		}
-	});
+	}
 
 	message.author.send({ embed: commandsEmbed }).then(() => {
 		message.react("\u2705").catch(function () {});

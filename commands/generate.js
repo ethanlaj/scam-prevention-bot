@@ -1,11 +1,11 @@
 var random = require("random-string");
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
-	if(permissionLevel !== 3) return;
+	if (permissionLevel !== 3) return;
 	if (!args[0]) return message.reply("You must include the number of codes to generate!").catch(() => {
 		return message.author.send(`You attempted to use the \`generate\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 	});
 	var rawExpires = Number(args[1]);
-	if(!args[1]) return message.reply("Please include an expiration date or 0!").catch(() => {
+	if (!args[1]) return message.reply("Please include an expiration date or 0!").catch(() => {
 		return message.author.send(`You attempted to use the \`generate\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 	});
 	let number = Number(args[0]);
