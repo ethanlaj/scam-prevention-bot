@@ -7,6 +7,7 @@ module.exports.run = async (bot) => {
 		return flatMessages;
 	}
 	bot.channels.find("id", "444588561858035723").fetchMessages({ limit: 100 }).then((blacklistedusers) => {
+		blacklistedusers = blacklistedusers.array()
 		for (let i= 0, len = blacklistedusers.length; i < len; i++) {
 
 			const blacklisteduser = blacklistedusers[i];
@@ -18,6 +19,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588561858035723").fetchMessages({ limit: 100 }).then((blacklistedguilds) => {
+		blacklistedguilds = blacklistedguilds.array()
 		for (let i= 0, len = blacklistedguilds.length; i < len; i++) {
 
 			const blacklistedguild = blacklistedguilds[i];
@@ -29,6 +31,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588565154889738").fetchMessages({ limit: 100 }).then((scammers) => {
+		scammers = scammers.array()
 		for (let i= 0, len = scammers.length; i < len; i++) {
 
 			const scammer = scammers[i];
