@@ -175,7 +175,7 @@ module.exports = {
         context.report({
           node: node,
           message: 'no for each loop',
-          fix: function(fixer) {
+          /*fix: function(fixer) {
             // @TODO: and use variable names that don't overlap, eventually
             // @TODO: variableBeingLooped === declaration/arg?
             var code = ''
@@ -229,7 +229,7 @@ module.exports = {
             if (isTest) console.log(fixed.text)
             return fixed
           },
-        }) // report
+        */}) // report
 
       }, // ExpressionStatement
     }

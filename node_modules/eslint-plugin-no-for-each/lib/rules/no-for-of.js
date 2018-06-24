@@ -67,7 +67,7 @@ module.exports = {
         context.report({
           node: node,
           message: 'no for of loop',
-          fix: function(fixer) {
+          /*fix: function(fixer) {
             code += 'let ' + variableName + ' = ' + obj + ';\n'
             code += 'for (let i = 0' + cacheLengthInLoop + '; i < ' + varLengthName + '; i++) ' + bodySplit
 
@@ -75,7 +75,7 @@ module.exports = {
             console.log(fixed.text)
             return fixed
           }
-        }) // report
+        */}) // report
 
       }
     }

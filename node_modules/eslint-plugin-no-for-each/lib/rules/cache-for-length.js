@@ -88,7 +88,7 @@ module.exports = {
         context.report({
           node: node,
           message: 'cache length in for loop',
-          fix: function(fixer) {
+          /*fix: function(fixer) {
             var nodeText = sourceCode.getText(node)
             var declarationText = sourceCode.getText(variableDeclaration)
             var rightText = sourceCode.getText(testRight)
@@ -106,7 +106,7 @@ module.exports = {
             console.log(fixedFull.text)
             return fixedFull
           },
-        })
+        */})
       },
 
     }

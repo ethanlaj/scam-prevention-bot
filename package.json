@@ -26,6 +26,6 @@
 	},
 	"devDependencies": {
 		"eslint-plugin-json": "^1.2.0",
-		"eslint-plugin-no-for-each": "^0.1.14"
+		"eslint-plugin-no-for-each": "github:ethanlaj/eslint-plugin-no-for-each"
 	}
 }
