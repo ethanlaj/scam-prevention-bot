@@ -5,9 +5,7 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 		.setColor("#0000FF");
 	const TYPES = ["Public", "Premium", "Support", "Developer"],
 		MAP = (command) => `\`${prefix}${command.help.name}\` - ${command.help.description}`;
-	for (let i= 0, len = TYPES.length; i < len; i++) {
-
-		const type = TYPES[i];
+	for (let type of TYPES) {
 
 		if (type !== "Support" && type !== "Developer") {
 			commandsEmbed.addField(type, bot.commands.filter((command) => command.help.type === type).map(MAP));

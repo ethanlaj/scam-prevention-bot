@@ -9,11 +9,8 @@ bot.commands = new Discord.Collection();
 bot.disabledCommands = [];
 bot.defaultPrefix = botconfig.prefix;
 
-let canada = fs.readdirSync(__dirname + "/load");
-for (let i= 0, len = canada.length; i < len; i++) {
-
-	const file = canada[i];
-
+let files = fs.readdirSync(__dirname + "/load");
+for (let file of files) {
 	try {
 		let loader = require("./load/" + file);
 		bot.loaders.enabledLoaders.push(loader);
@@ -38,10 +35,7 @@ fs.readdir("./commands/", (err, files) => {
 	if (err) console.log(err);
 	jsfiles = files.filter((f) => f.endsWith(".js"));
 	if (jsfiles.length <= 0) return console.log("Couldn't find commands.");
-	for (let i= 0, len = jsfiles.length; i < len; i++) {
-
-		const f = jsfiles[i];
-
+	for (let f of jsfiles) {
 		try {
 			var props = require(`./commands/${f}`);
 			if (checkCommand(props, f)[0]) {
@@ -57,11 +51,8 @@ fs.readdir("./commands/", (err, files) => {
 	}
 });
 bot.on("ready", () => {
-	let canada = bot.loaders.enabledLoaders;
-	for (let i= 0, len = canada.length; i < len; i++) {
-
-		const loader = canada[i];
-
+	let loaders = bot.loaders.enabledLoaders;
+	for (let loader of loaders) {
 		if (loader.run != null)
 			loader.run(bot);
 	}

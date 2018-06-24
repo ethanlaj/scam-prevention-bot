@@ -33,16 +33,10 @@ async function everything(args, message, bot) {
 	var count = 0;
 	var count2 = 0;
 	message.channel.send("Loading...").then((m) => {
-		for (let i = 0, len = dbchannels.length; i < len; i++) {
-
-			const dbchannel = dbchannels[i];
-
+		for (let dbchannel of dbchannels) {
 			count2 = count2 + 1;
 			dbchannel.fetchMessages({ limit: 100 }).then(async (messages) => {
-				for (let i = 0, len = messages.length; i < len; i++) {
-
-					const msg = messages[i];
-
+				for (let msg of messages) {
 					if (msg.content.startsWith(`${target.id}`)) {
 						count = count - 1;
 						var msgargs = msg.content.split(" ").slice(1);

@@ -7,10 +7,7 @@ module.exports.run = async (bot) => {
 		return flatMessages;
 	}
 	bot.channels.find("id", "444588561858035723").fetchMessages({ limit: 100 }).then((blacklistedusers) => {
-		blacklistedusers = blacklistedusers.array()
-		for (let i= 0, len = blacklistedusers.length; i < len; i++) {
-
-			const blacklisteduser = blacklistedusers[i];
+		for (let blacklisteduser of blacklistedusers) {
 
 			var userid = blacklisteduser.content;
 			bot.data.blacklistedUsers.push({ msg: blacklisteduser, id: userid });
@@ -19,10 +16,8 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588561858035723").fetchMessages({ limit: 100 }).then((blacklistedguilds) => {
-		blacklistedguilds = blacklistedguilds.array()
-		for (let i= 0, len = blacklistedguilds.length; i < len; i++) {
+		for (let blacklistedguild of blacklistedguilds) {
 
-			const blacklistedguild = blacklistedguilds[i];
 
 			var guild = blacklistedguild.content;
 			bot.data.blacklistedGuilds.push({ msg: blacklistedguild, id: guild });
@@ -31,10 +26,8 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588565154889738").fetchMessages({ limit: 100 }).then((scammers) => {
-		scammers = scammers.array()
-		for (let i= 0, len = scammers.length; i < len; i++) {
+		for (let scammer of scammers) {
 
-			const scammer = scammers[i];
 
 			bot.data.scammers.push({ msg: scammer, id: scammer.content });
 		}
@@ -42,10 +35,8 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588560859791381").fetchMessages({ limit: 100 }).then((codes) => {
-		codes = codes.array()
-		for (let i= 0, len = codes.length; i < len; i++) {
+		for (let code of codes) {
 
-			const code = codes[i];
 
 			bot.data.codes.push({ msg: code, code: code.content.split(" ")[0].trim(), expires: code.content.split(" ")[1].trim() });
 		}
@@ -53,10 +44,8 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588564056113162").fetchMessages({ limit: 100 }).then((pusers) => {
-		pusers = pusers.array()
-		for (let i= 0, len = pusers.length; i < len; i++) {
+		for (let puser of pusers) {
 
-			const puser = pusers[i];
 
 			bot.data.pusers.push({ msg: puser, id: puser.content.split(" ")[0].trim(), expires: puser.content.split(" ")[1].trim() });
 		}
@@ -64,10 +53,8 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	var prefixMessages = await getPrefixes();
-	prefixMessages = prefixMessages.array()
-	for (let i= 0, len = prefixMessages.length; i < len; i++) {
+	for (let prefixMessage of prefixMessages) {
 
-		const prefixMessage = prefixMessages[i];
 
 		var guild = prefixMessage.content.split(" ")[0];
 		var prefix = prefixMessage.content.split(" ")[1];
