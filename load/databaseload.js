@@ -42,6 +42,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588560859791381").fetchMessages({ limit: 100 }).then((codes) => {
+		codes = codes.array()
 		for (let i= 0, len = codes.length; i < len; i++) {
 
 			const code = codes[i];
@@ -52,6 +53,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588564056113162").fetchMessages({ limit: 100 }).then((pusers) => {
+		pusers = pusers.array()
 		for (let i= 0, len = pusers.length; i < len; i++) {
 
 			const puser = pusers[i];
@@ -62,6 +64,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	var prefixMessages = await getPrefixes();
+	prefixMessages = prefixMessages.array()
 	for (let i= 0, len = prefixMessages.length; i < len; i++) {
 
 		const prefixMessage = prefixMessages[i];
