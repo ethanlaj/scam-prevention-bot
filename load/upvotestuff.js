@@ -3,7 +3,7 @@ module.exports.run = async (bot) => {
 	let upvotessend = bot.channels.find("id", "448951130081460245");
 	var upvoter;
 	upvotesholdingchannel.fetchMessages({ limit: 100 }).then(async (msgs) => {
-		for (let msg of msgs) {
+		for (let msg of msgs.array()) {
 			upvoter = await bot.fetchUser(msg.content);
 			upvotessend.send(`Many thanks to ${upvoter.tag} for upvoting our bot!`).then(() => {
 				msg.delete();

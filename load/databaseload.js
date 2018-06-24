@@ -7,7 +7,7 @@ module.exports.run = async (bot) => {
 		return flatMessages;
 	}
 	bot.channels.find("id", "444588561858035723").fetchMessages({ limit: 100 }).then((blacklistedusers) => {
-		for (let blacklisteduser of blacklistedusers) {
+		for (let blacklisteduser of blacklistedusers.array()) {
 
 			var userid = blacklisteduser.content;
 			bot.data.blacklistedUsers.push({ msg: blacklisteduser, id: userid });
@@ -16,7 +16,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588561858035723").fetchMessages({ limit: 100 }).then((blacklistedguilds) => {
-		for (let blacklistedguild of blacklistedguilds) {
+		for (let blacklistedguild of blacklistedguilds.array()) {
 
 
 			var guild = blacklistedguild.content;
@@ -26,7 +26,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588565154889738").fetchMessages({ limit: 100 }).then((scammers) => {
-		for (let scammer of scammers) {
+		for (let scammer of scammers.array()) {
 
 
 			bot.data.scammers.push({ msg: scammer, id: scammer.content });
@@ -35,7 +35,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588560859791381").fetchMessages({ limit: 100 }).then((codes) => {
-		for (let code of codes) {
+		for (let code of codes.array()) {
 
 
 			bot.data.codes.push({ msg: code, code: code.content.split(" ")[0].trim(), expires: code.content.split(" ")[1].trim() });
@@ -44,7 +44,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	bot.channels.find("id", "444588564056113162").fetchMessages({ limit: 100 }).then((pusers) => {
-		for (let puser of pusers) {
+		for (let puser of pusers.array()) {
 
 
 			bot.data.pusers.push({ msg: puser, id: puser.content.split(" ")[0].trim(), expires: puser.content.split(" ")[1].trim() });
@@ -53,7 +53,7 @@ module.exports.run = async (bot) => {
 		console.log("Couldn't access the database.");
 	});
 	var prefixMessages = await getPrefixes();
-	for (let prefixMessage of prefixMessages) {
+	for (let prefixMessage of prefixMessages.array()) {
 
 
 		var guild = prefixMessage.content.split(" ")[0];

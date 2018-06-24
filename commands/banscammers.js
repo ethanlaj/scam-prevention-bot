@@ -14,7 +14,7 @@ module.exports = {
 					var verifiedPeople = await bot.channels.get("443931376287481858").fetchMessages({ limit: 100 });
 					verifiedPeople = verifiedPeople.map((user) => user.content.split(" "));
 					var membersToBan = verifiedPeople.filter((user) => scammers.includes(user[1]));
-					for (let member of membersToBan) {
+					for (let member of membersToBan.array()) {
 						message.guild.ban(member[0]).catch(() => {});
 					}
 				} else {

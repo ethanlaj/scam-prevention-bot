@@ -51,9 +51,9 @@ async function everything(bot, message) {
 					var messageloop = 0;
 					var dbchannels = dbguild.channels.filter((m) => RegExp("roblox-database", "gi").test(m.name));
 					dbchannel = dbguild.channels.find("name", "roblox-database");
-					for (let dbchannel of dbchannels) {
+					for (let dbchannel of dbchannels.array()) {
 						dbchannel.fetchMessages({ limit: 100 }).then((messages) => {
-							for (let msg of messages) {
+							for (let msg of messages.array()) {
 								if (msg.content.startsWith(`${message.author.id}`)) {
 									msg.delete();
 								}
@@ -82,9 +82,9 @@ async function everything(bot, message) {
 				var messageloop = 0;
 				var dbchannels = dbguild.channels.filter((m) => RegExp("roblox-database", "gi").test(m.name));
 				dbchannel = dbguild.channels.find("name", "roblox-database");
-				for (let dbchannel2 of dbchannels) {
+				for (let dbchannel2 of dbchannels.array()) {
 					dbchannel2.fetchMessages({ limit: 100 }).then((messages) => {
-						for (let msg of messages) {
+						for (let msg of messages.array()) {
 							if (msg.content.startsWith(`${message.author.id}`)) {
 								msg.delete();
 								dbchannel.send(`${message.author.id} ${userid}`);
