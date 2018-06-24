@@ -1,5 +1,5 @@
 {
-	"name": "rblxdevrequestsbot",
+	"name": "scam-reports",
 	"version": "1.0.0",
 	"description": "a scam reporting bot",
 	"main": "index.js",
@@ -8,7 +8,7 @@
 		"start": "node index.js",
 		"fix": "eslint . --fix && eslint test/. --env mocha --fix"
 	},
-	"author": "ethanlaj#8805",
+	"author": "ethanlaj",
 	"license": "ISC",
 	"dependencies": {
 		"all": "0.0.0",
