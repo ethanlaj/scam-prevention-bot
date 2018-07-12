@@ -9,8 +9,8 @@ module.exports.run = async (bot, message, args) => {
 	if (prefix.length > 5) return message.reply("The prefix cannot be more than 5 characters!").catch(() => {
 		return message.author.send(`You attempted to use the \`setprefix\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 	});
-	bot.data.prefixes.splice(bot.data.prefixes.indexOf(bot.data.prefixes.find((value) => value.guild === message.guild.id)), 1);
 	if (bot.data.prefixes.find((value) => value.guild === message.guild.id)) bot.data.prefixes.find((value) => value.guild === message.guild.id).msg.delete();
+	bot.data.prefixes.splice(bot.data.prefixes.indexOf(bot.data.prefixes.find((value) => value.guild === message.guild.id)), 1);
 	var prefixdatabase = bot.channels.find("name", "prefix-database");
 	var messages = await prefixdatabase.fetchMessages({ limit: 100 });
 	let dbguild = bot.guilds.get("443929284411654144");
