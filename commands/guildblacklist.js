@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel > 0) {
-		var mod = bot.channels.find("id", "444634075836448768");
+		var mod = bot.channels.find("id", "469621338089324544");
 		var channel = bot.channels.find("id", "444588563032440833");
 		var guildid = args[0];
 		if (!guildid) return message.reply("You must supply a guild id!").catch(() => {

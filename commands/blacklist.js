@@ -8,7 +8,7 @@ module.exports = {
 	},
 	run: async function(bot, message, args, _, permissionLevel) {
 		if (permissionLevel > 0) {
-			var mod = bot.channels.get("444634075836448768");
+			var mod = bot.channels.get("469621338089324544");
 			var channel = bot.channels.get("444588561858035723");
 			var pingedUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 			var userID = args[0];

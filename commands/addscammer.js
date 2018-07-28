@@ -10,7 +10,7 @@ module.exports = {
 	run: async function(bot, message, args, _, permissionLevel) {
 		if (permissionLevel > 0) {
 			var scammersChannel = bot.channels.get("444588565154889738"),
-				post = bot.channels.get("443959210817093642"),
+				post = bot.channels.get("469615976522973189"),
 				userID = args[0];
 			if (userID != null) {
 				var user = await rbx.getIdFromUsername(args[0]);
@@ -21,7 +21,7 @@ module.exports = {
 						}).catch(() => {});
 						post.send(`**${userID}**, https://www.roblox.com/users/${user}/profile`).catch(() => {});
 						message.react("\u2705").catch(() => {});
-						var mod = bot.channels.get("444634075836448768");
+						var mod = bot.channels.get("469621338089324544");
 						var log = new RichEmbed()
 							.setTitle("Scammer Added")
 							.setColor("#FF0000")

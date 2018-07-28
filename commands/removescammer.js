@@ -4,7 +4,7 @@ const rbx = require("roblox-js");
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel > 0) {
 		let userid = args[0];
-		let post = bot.channels.find("id", "443959210817093642");
+		let post = bot.channels.find("id", "469615976522973189");
 		let msgs = await post.fetchMessages({ limit: 100 });
 		if (userid) {
 			var errortf;
@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 				var inchannel = msgs.find((m) => RegExp(user, "gi").test(m.content));
 				if (inchannel) inchannel.delete();
 				message.react("\u2705");
-				let mod = bot.channels.find("id", "444634075836448768");
+				let mod = bot.channels.find("id", "469621338089324544");
 				let log = new Discord.RichEmbed()
 					.setTitle("Removed Scammer")
 					.setColor("#FF0000")

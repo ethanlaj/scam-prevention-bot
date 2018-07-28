@@ -3,13 +3,13 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	var commandsEmbed = new Discord.RichEmbed()
 		.setTitle("Commands")
 		.setColor("#0000FF");
-	const TYPES = ["Public", "Premium", "Support", "Developer"],
+	const TYPES = ["Public", "Premium", "Support", "Owners"],
 		MAP = (command) => `\`${prefix}${command.help.name}\` - ${command.help.description}`;
 	for (let type of TYPES) {
 
-		if (type !== "Support" && type !== "Developer") {
+		if (type !== "Support" && type !== "Owners") {
 			commandsEmbed.addField(type, bot.commands.filter((command) => command.help.type === type).map(MAP));
-		} else if ((permissionLevel >= 2 && type === "Support") || (permissionLevel === 3 && type === "Developer")) {
+		} else if ((permissionLevel >= 1 && type === "Support") || (permissionLevel === 2 && type === "Owners")) {
 			commandsEmbed.addField(type, bot.commands.filter((command) => command.help.type === type).map(MAP));
 		}
 	}

@@ -10,7 +10,7 @@ module.exports = {
 		if (permissionLevel > 0) {
 			var casenumber = args[0];
 			if (casenumber != null) {
-				var reportsChannel = bot.channels.get("444633860769185832");
+				var reportsChannel = bot.channels.get("469621223513522216");
 				var reports = await reportsChannel.fetchMessages({ limit: 100 });
 				var matchingReport = reports.find((m) => m && m.embeds && m.embeds[0] && m.embeds[0].fields && m.embeds[0].fields[0].value === casenumber);
 				if (matchingReport != null) {
@@ -27,7 +27,7 @@ module.exports = {
 								return message.author.send(`You attempted to use the \`accept\` command in ${message.channel}, but I can not chat there.`).catch(() => {});
 							});
 						});
-						var logs = bot.channels.get("444634075836448768");
+						var logs = bot.channels.get("469621338089324544");
 						const acceptedReport = new RichEmbed()
 							.setTitle("Accepted Report")
 							.setColor("#FF0000")

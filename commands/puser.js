@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
-	if (permissionLevel !== 3) return;
+	if (permissionLevel !== 2) return;
 	var mentioneduser = message.mentions.users.first();
 	if (!mentioneduser) {
 		var id = args[0];
@@ -50,5 +50,5 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 module.exports.help = {
 	name: "puser",
 	description: "Toggles a user's premium status",
-	type: "Developer"
+	type: "Owners"
 };

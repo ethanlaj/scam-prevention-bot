@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
 	let guild = bot.guilds.find("id", "443867131721941005");
-	var mod = bot.channels.find("id", "444634075836448768");
+	var mod = bot.channels.find("id", "469621338089324544");
 	let member = await guild.fetchMember(message.author.id);
 	if (!member) return;
 	if (member && member.roles.get("443898332029517824")

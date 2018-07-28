@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
-	if (permissionLevel !== 3) return;
+	if (permissionLevel !== 2) return;
 	let casechannel = bot.channels.find("id", "444588562793627668");
 	casechannel.fetchMessage("444593973764292618").then((casenu) => {
 		casenu.edit("1").then(() => {
@@ -19,5 +19,5 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 module.exports.help = {
 	name: "resetcase",
 	description: "Resets case numbers for the report command",
-	type: "Developer"
+	type: "Owners"
 };

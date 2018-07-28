@@ -4,10 +4,10 @@ module.exports = {
 	help: {
 		name: "generate",
 		description: "Generates premium codes",
-		type: "Developer"
+		type: "Owners"
 	},
-	run: async (bot, message, args, prefix, permissionLevel) => {
-		if (permissionLevel !== 3) return;
+	run: async (bot, message, args) => {
+		if (message.author.id !== "291367352476631040") return;
 		if (!args[0]) return message.reply("You must include the number of codes to generate!").catch(() => {
 			return message.author.send(`You attempted to use the \`generate\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 		});
