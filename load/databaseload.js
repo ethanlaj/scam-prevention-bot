@@ -45,8 +45,6 @@ module.exports.run = async (bot) => {
 	});
 	bot.channels.find("id", "444588564056113162").fetchMessages({ limit: 100 }).then((pusers) => {
 		for (let puser of pusers.array()) {
-
-
 			bot.data.pusers.push({ msg: puser, id: puser.content.split(" ")[0].trim(), expires: puser.content.split(" ")[1].trim() });
 		}
 	}).catch(() => {
