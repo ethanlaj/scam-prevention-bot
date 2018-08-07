@@ -34,7 +34,7 @@ module.exports = {
 				});
 			} else {
 				if (!bot.data.blacklistedUsers.find((value) => value.id === userID)) {
-					var userob = await bot.fetchUser(pingedUser.id);
+					var userob = await bot.fetchUser(userID);
 					if (!userob) return message.reply("Couldn't find this user!").catch(() => {
 						return message.author.send(`You attempted to use the \`blacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 					});
