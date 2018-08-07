@@ -55,8 +55,7 @@ module.exports.run = async (bot, message, args) => {
 				return message.author.send(`You attempted to use the \`unblacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 			});
 		}
-	}
-};
+	};
 
 module.exports.help = {
 	name: "unblacklist",
