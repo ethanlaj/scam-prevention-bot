@@ -37,7 +37,7 @@ async function everything(bot, message) {
 			// db code here putting username and discord id in the db
 			message.reply(`Successfully linked your Discord account to ${username}. This may take some time to update into the database`);
 			var dbguild = bot.guilds.get("443929284411654144");
-			var dbchannel = dbguild.channels.find("name", "roblox-database");
+			var dbchannel = dbguild.channels.find((m) => m.name === "roblox-database");
 			var olo = await dbchannel.fetchMessages({ limit: 100 });
 			var msgcount = olo.size;
 			if (msgcount == "100") {
@@ -50,7 +50,7 @@ async function everything(bot, message) {
 					var channelloop = 0;
 					var messageloop = 0;
 					var dbchannels = dbguild.channels.filter((m) => RegExp("roblox-database", "gi").test(m.name));
-					dbchannel = dbguild.channels.find("name", "roblox-database");
+					dbchannel = dbguild.channels.find((m) => m.name === "roblox-database");
 					for (let dbchannel of dbchannels.array()) {
 						dbchannel.fetchMessages({ limit: 100 }).then((messages) => {
 							for (let msg of messages.array()) {
@@ -81,7 +81,7 @@ async function everything(bot, message) {
 				var channelloop = 0;
 				var messageloop = 0;
 				var dbchannels = dbguild.channels.filter((m) => RegExp("roblox-database", "gi").test(m.name));
-				dbchannel = dbguild.channels.find("name", "roblox-database");
+				dbchannel = dbguild.channels.find((m) => m.name === "roblox-database");
 				for (let dbchannel2 of dbchannels.array()) {
 					dbchannel2.fetchMessages({ limit: 100 }).then((messages) => {
 						for (let msg of messages.array()) {

@@ -22,7 +22,7 @@ module.exports = {
 		if (number > 50) return message.reply("Number must be smaller than 51!").catch(() => {
 			return message.author.send(`You attempted to use the \`generate\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 		});
-		let codeschannel = bot.channels.find("id", "444588560859791381");
+		let codeschannel = bot.channels.get("444588560859791381");
 		let i = 0;
 		while (i < number) {
 			var a = random(10);

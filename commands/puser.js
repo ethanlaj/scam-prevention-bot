@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 			});
 		});
 	}
-	let userschannel = bot.channels.find("id", "444588564056113162");
+	let userschannel = bot.channels.get("444588564056113162");
 	let usercheck = bot.data.pusers.find((value) => value.id === mentioneduser.id);
 	if (usercheck) {
 		await usercheck.msg.delete().then(() => {

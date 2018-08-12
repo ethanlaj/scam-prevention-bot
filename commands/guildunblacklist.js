@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel > 0) {
-		var mod = bot.channels.find("id", "469621338089324544");
+		var mod = bot.channels.get("469621338089324544");
 		var guildid = args[0];
 		if (!guildid) return message.reply("You must supply a guild id!").catch(() => {
 			return message.author.send(`You attempted to use the \`guildunblacklist\` command in ${message.channel}, but I can not chat there.`).catch(function () { });

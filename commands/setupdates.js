@@ -1,7 +1,7 @@
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel === 2) {
 		let update = message.content.substr(12);
-		let channel = bot.channels.find("id", "444588564328742926");
+		let channel = bot.channels.get("444588564328742926");
 		let editor = await channel.fetchMessage("444593973756166155").catch(function () { });
 		await editor.edit(update).then(() => {
 			message.react("\u2705").catch(function () { });

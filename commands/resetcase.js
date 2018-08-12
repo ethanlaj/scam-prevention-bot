@@ -1,6 +1,6 @@
 module.exports.run = async (bot, message, args, prefix, permissionLevel) => {
 	if (permissionLevel !== 2) return;
-	let casechannel = bot.channels.find("id", "444588562793627668");
+	let casechannel = bot.channels.get("444588562793627668");
 	casechannel.fetchMessage("444593973764292618").then((casenu) => {
 		casenu.edit("1").then(() => {
 			message.react("✅").catch(function () { });

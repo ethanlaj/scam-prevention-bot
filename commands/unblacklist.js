@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-	var mod = bot.channels.find("id", "469621338089324544");
+	var mod = bot.channels.get("469621338089324544");
 	var pingeduser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
 	var userid = args[0];
 	if (pingeduser) {

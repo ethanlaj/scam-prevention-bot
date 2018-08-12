@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+/*const Discord = require("discord.js");
 const request = require("request-promise-native");
 function postServerCount(bot) {
 	return request.post({
@@ -23,4 +23,4 @@ module.exports.run = async (bot) => {
 	bot.on("guildDelete", async () => {
 		postServerCount(bot);
 	});
-};
+};*/

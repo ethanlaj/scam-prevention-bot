@@ -63,8 +63,7 @@ bot.on("ready", () => {
 
 bot.on("message", async (message) => {
 	if (!message.author.bot && message.channel.type !== "dm") {
-		var args = message.content.split(" "),
-			cmd = args.shift().toLowerCase();
+		var args = message.content.split(" ");
 		var rawPrefix = bot.data.prefixes.find((value) => value.guild === message.guild.id);
 		var prefix = (rawPrefix != null) ? rawPrefix.prefix : bot.defaultPrefix;
 
@@ -73,7 +72,7 @@ bot.on("message", async (message) => {
 			bot.data.pusers.splice(bot.data.pusers.indexOf(bot.data.pusers.find((value) => value.id === message.author.id)), 1);
 			message.author.send("Your premium has expired!").catch(function () { });
 		}
-		let guild = bot.guilds.find("id", "400508946709872660");
+		let guild = bot.guilds.get("400508946709872660");
 		var permissionLevel = 0;
 		if (guild.members.get(message.author.id)) {
 			var member = await guild.fetchMember(message.author.id);
@@ -88,6 +87,7 @@ bot.on("message", async (message) => {
 		//2 = Co-Owner & Owner
 		var commandFile;
 		if (message.content.startsWith(prefix)) {
+			let cmd = args.shift().toLowerCase();
 			commandFile = bot.commands.get(cmd.slice(prefix.length));
 			if (commandFile != null) {
 				var timeout = bot.data.timeout.find((value) => value.id === message.author.id);
@@ -105,15 +105,15 @@ bot.on("message", async (message) => {
 					});
 				}
 			}
-		} else if (message.content.startsWith(`<@!${bot.user.id}> `) || message.content.startsWith(`<@${bot.user.id}> `)) {
+		} else if (new RegExp(`^<@!?${bot.user.id}>`, "").test(message.content)) {
+			var mention = args[0];
+			args.shift();
+			if (!args[0]) return;
 			commandFile = bot.commands.get(args[0].toLowerCase());
 			if (commandFile != null) {
-				args.shift();
-				if (message.content.startsWith(`<@${bot.user.id}>`)) {
-					message.content = message.content.replace(`<@${bot.user.id}> `, prefix);
-				} else if (message.content.startsWith(`<@!${bot.user.id}>`)) {
-					message.content = message.content.replace(`<@!${bot.user.id}> `, prefix);
-				}
+				message.mentions.members.delete(bot.user.id);
+				message.mentions.users.delete(bot.user.id);
+				message.content = message.content.replace(`${mention} `, prefix);
 				if (bot.data.timeout.find((value) => value.id === message.author.id) == null) {
 					bot.setTimeout(() => {
 						bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find((value) => value.id === message.author.id)), 1);

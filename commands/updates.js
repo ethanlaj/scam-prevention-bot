@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 module.exports.run = async (bot, message) => {
-	let channel = bot.channels.find("id", "444588564328742926");
+	let channel = bot.channels.get("444588564328742926");
 	let editor = await channel.fetchMessage("444593973756166155").catch(function () { });
 	let thing = new Discord.RichEmbed()
 		.setTitle("Updates")

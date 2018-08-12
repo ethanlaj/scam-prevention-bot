@@ -17,7 +17,7 @@ module.exports.run = async (bot, message) => {
 	var timelimitembed = new Discord.RichEmbed()
 		.setColor("#0000FF")
 		.setDescription("Prompt cancelled, no response after five minutes");
-	let reportchannel = bot.channels.find("id", "469621223513522216");
+	let reportchannel = bot.channels.get("469621223513522216");
 	let reportmessages = await reportchannel.fetchMessages({ limit: 100 });
 	if (reportchannel.topic.toLowerCase() === "closed") return message.reply("🔨We are currently undergoing maintenance! We will be back soon!🔨").catch(() => {
 		return message.author.send(`You attempted to use the \`report\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
@@ -147,7 +147,7 @@ module.exports.run = async (bot, message) => {
 
 	}
 	//----------------------------------------------------------------------------------------------------------------------------------
-	let casechannel = bot.channels.find("id", "444588562793627668");
+	let casechannel = bot.channels.get("444588562793627668");
 	let casenu = await casechannel.fetchMessage("444593973764292618");
 	let casenumber = Number(`${casenu.content}`);
 	await casenu.edit(`${casenumber + 1}`);
@@ -172,7 +172,7 @@ module.exports.run = async (bot, message) => {
 		.setColor("#0000FF")
 		.setDescription("✅ **Successfully Submitted! -- Your Response Was Submitted And Will Be Reviewed By Our Admins And Moderators Shortly!** ✅");
 	message.author.send(hmmtho).catch(function () { });
-	let mod = bot.channels.find("id", "469621338089324544");
+	let mod = bot.channels.get("469621338089324544");
 	let areportEmbed = new Discord.RichEmbed()
 		.setTitle("Copy Of Report - Logging Purposes")
 		.setColor("#FF0000")

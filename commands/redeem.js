@@ -1,5 +1,5 @@
 module.exports.run = async (bot, message, args) => {
-	let userschannel = bot.channels.find("id", "444588564056113162");
+	let userschannel = bot.channels.get("444588564056113162");
 	if (bot.data.pusers.find((value) => value.id === message.author.id)) return message.reply("You already have premium!").catch(() => {
 		return message.author.send(`You attempted to use the \`redeem\` command in ${message.channel}, but I can not chat there.`).catch(function () { });
 	});

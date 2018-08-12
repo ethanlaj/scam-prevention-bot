@@ -12,7 +12,7 @@ module.exports = {
 			if (!casenumber) return message.reply("Please provide a case number!").catch(() => {
 				return message.author.send(`You attempted to use the \`decline\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 			});
-			let reportschannel = bot.channels.find("id", "469621223513522216");
+			let reportschannel = bot.channels.get("469621223513522216");
 			var delmessage;
 			await reportschannel.fetchMessages({ limit: 100 }).then((reports) => {
 				delmessage = reports.find((m) => m.embeds && m.embeds[0] && m.embeds[0].fields && m.embeds[0].fields[0].value === casenumber);
@@ -39,7 +39,7 @@ module.exports = {
 					return message.author.send(`You attempted to use the \`decline\` command in ${message.channel}, but I can not chat there.`).catch(function() {});
 				});
 			});
-			let mod = bot.channels.find("id", "469621338089324544");
+			let mod = bot.channels.get("469621338089324544");
 			let log = new Discord.RichEmbed()
 				.setTitle("Declined Report")
 				.setColor("#FF0000")
