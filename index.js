@@ -114,6 +114,7 @@ bot.on("message", async (message) => {
 				message.mentions.members.delete(bot.user.id);
 				message.mentions.users.delete(bot.user.id);
 				message.content = message.content.replace(`${mention} `, prefix);
+				args.shift();
 				if (bot.data.timeout.find((value) => value.id === message.author.id) == null) {
 					bot.setTimeout(() => {
 						bot.data.timeout.splice(bot.data.timeout.indexOf(bot.data.timeout.find((value) => value.id === message.author.id)), 1);

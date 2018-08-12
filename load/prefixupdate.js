@@ -1,4 +1,3 @@
-const botconfig = require("../botconfig.js");
 module.exports.run = async (bot) => {
 	bot.on("message", (message) => {
 		var rawPrefix = bot.data.prefixes.find((value) => value.guild === message.guild.id);
@@ -19,7 +18,7 @@ module.exports.run = async (bot) => {
 			if (bot.data.timeout.find((value) => value.id === message.author.id)) return message.reply("You cannot use this command yet!").catch(() => {
 				return message.author.send(`You attempted to use a command in ${message.channel}, but I can not chat there.`).catch(function() {});
 			});
-			if (prefix !== botconfig.prefix) {
+			if (prefix !== bot.defaultPrefix) {
 				bot.data.prefixes.splice(bot.data.prefixes.indexOf(bot.data.prefixes.find((value) => value.guild === message.guild.id)), 1);
 				if (rawPrefix) rawPrefix.msg.delete();
 				bot.data.timeout.push({ id: message.author.id });
