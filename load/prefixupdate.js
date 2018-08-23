@@ -1,5 +1,6 @@
 module.exports.run = async (bot) => {
 	bot.on("message", (message) => {
+		if (message.author.bot || message.channel.type !== "dm") return;
 		var rawPrefix = bot.data.prefixes.find((value) => value.guild === message.guild.id);
 		if (new RegExp(`^<@!?${bot.user.id}> prefix$`, "").test(message.content.toLowerCase())) {
 			var prefix = (rawPrefix != null) ? rawPrefix.prefix : bot.defaultPrefix;
